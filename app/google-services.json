@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1073562916599",
+    "firebase_url": "https://login-registro-mvp.firebaseio.com",
+    "project_id": "login-registro-mvp",
+    "storage_bucket": "login-registro-mvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073562916599:android:2d590675c3c83fb176e5f2",
+        "android_client_info": {
+          "package_name": "com.example.loginconmvpsociedadandroide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073562916599-fkafss6vhesh0quljodvnf68t3qptmdd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginconmvpsociedadandroide",
+            "certificate_hash": "e6802d45de9674909daf7bb616630fb051ed5a0e"
+          }
+        },
+        {
+          "client_id": "1073562916599-tgrsv58uugg451lcg2gjpisl299h1d05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_QAKObeg9jb33QCDaFs_nZvpHm1MLxSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073562916599-tgrsv58uugg451lcg2gjpisl299h1d05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

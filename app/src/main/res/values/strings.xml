@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Login con MVP Sociedad Androide</string>
+    <string name="password">Password</string>
+    <string name="email">E-mail</string>
+    <string name="clean_firestore_login">CLEAN FIRESTORE LOGIN</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="signup">SIGNUP</string>
+    <string name="not_an_accouunt_yet_register">Not an accouunt yet? Register</string>
+    <string name="login">LOGIN</string>
+</resources>
