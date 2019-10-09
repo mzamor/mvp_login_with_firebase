@@ -48,7 +48,6 @@ class LoginPresenter(loginInteractor: LoginInterator) : LoginContract.LoginPrese
                     view?.showError(e.message)
                 }
             }
-
         }
     }
 

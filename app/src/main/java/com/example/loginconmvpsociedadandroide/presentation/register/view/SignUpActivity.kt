@@ -74,7 +74,7 @@ class SignUpActivity : BaseActivity(), SignUpContract.RegisterView {
         bt_register.visibility = View.VISIBLE
     }
 
-    override fun showError(errorMsg: String) {
+    override fun showError(errorMsg: String?) {
         toast(this,errorMsg)
     }
 

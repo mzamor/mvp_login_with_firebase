@@ -6,13 +6,14 @@ interface SignUpContract {
         fun signUp()
         fun showProgress()
         fun hideProgress()
-        fun showError(errorMsg: String)
+        fun showError(errorMsg: String?)
     }
 
     interface RegisterPresenter {
         fun attachView(view: RegisterView)
         fun isViewAttached(): Boolean
         fun detachView()
+        fun dettachJob()
         fun checkEmptyName(fullName: String): Boolean
         fun checkValidEmail(email: String): Boolean
         fun checkEmptyPasswords(pw1: String, pw2: String): Boolean

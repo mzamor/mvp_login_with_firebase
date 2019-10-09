@@ -3,8 +3,14 @@ package com.example.loginconmvpsociedadandroide.presentation.register.presenter
 import androidx.core.util.PatternsCompat
 import com.example.loginconmvpsociedadandroide.domain.interactor.registerInteractor.SignUpInteractor
 import com.example.loginconmvpsociedadandroide.presentation.register.SignUpContract
+import com.example.loginconmvpsociedadandroide.presentation.register.exceptions.FirebaseRegisterException
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.RegisterPresenter {
+class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.RegisterPresenter, CoroutineScope {
+    private val job  = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
     var view : SignUpContract.RegisterView? = null
     var signUpInteractor:SignUpInteractor? = null
 
@@ -24,6 +30,10 @@ class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.Regis
         view=null
     }
 
+    override fun dettachJob() {
+        coroutineContext.cancel()
+    }
+
     override fun checkEmptyName(fullName: String): Boolean {
         return fullName.isEmpty()
     }
@@ -41,18 +51,20 @@ class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.Regis
     }
 
     override fun signUp(fullName: String, email: String, password: String) {
-        view?.showProgress()
-        signUpInteractor?.signUp(fullName,email,password,object:SignUpInteractor.RegisterCallback {
-            override fun onRegisterSuccess() {
-                view?.navigateToMain()
-                view?.hideProgress()
-            }
-            override fun onRegisterError(errorMsg: String) {
-                view?.showError(errorMsg)
-                view?.hideProgress()
-            }
-        })
+        launch{
+            view?.showProgress()
+           try{
+               signUpInteractor?.signUp(fullName,email,password)
+               if(isViewAttached()) {
+                   view?.navigateToMain()
+                   view?.hideProgress()
+               }
+           }catch (e:FirebaseRegisterException){
+               if(isViewAttached()) {
+                   view?.showError(e.message)
+                   view?.hideProgress()
+               }
+           }
+        }
     }
-
-
 }
