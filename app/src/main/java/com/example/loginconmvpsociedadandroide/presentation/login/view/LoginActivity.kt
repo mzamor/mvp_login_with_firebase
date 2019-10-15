@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.View
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
-import com.example.loginconmvpsociedadandroide.domain.interactor.loginInteractor.LoginInteractorImpl
+import com.example.loginconmvpsociedadandroide.domain.interactor.auth.loginInteractor.LoginInteractorImpl
 import com.example.loginconmvpsociedadandroide.presentation.login.LoginContract
 import com.example.loginconmvpsociedadandroide.presentation.login.presenter.LoginPresenter
 import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
+import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.PasswordRecoverContract
+import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.view.PasswordRecoverActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.view.SignUpActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,6 +27,10 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
         tv_not_an_accouunt_yet_register.setOnClickListener {
             navigateToRegister()
         }
+
+        tv_recover_password.setOnClickListener {
+            navigateToPasswordRecover()
+        }
     }
 
     override fun getLayout(): Int {
@@ -37,10 +43,12 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     override fun showProgressDialog() {
         progressBar_login.visibility = View.VISIBLE
+        btn_login.visibility = View.GONE
     }
 
     override fun hideProgressDialog() {
         progressBar_login.visibility = View.GONE
+        btn_login.visibility = View.VISIBLE
     }
 
     override fun signIn() {
@@ -61,6 +69,11 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     override fun navigateToRegister() {
         startActivity(Intent(this, SignUpActivity::class.java) )
+    }
+
+    override fun navigateToPasswordRecover() {
+        startActivity(Intent(this, PasswordRecoverActivity::class.java))
+        finish()
     }
 
     override fun onDetachedFromWindow() {

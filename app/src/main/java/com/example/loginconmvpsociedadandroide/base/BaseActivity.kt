@@ -9,18 +9,25 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity :AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(getLayout())
     }
 
     @LayoutRes
-    abstract fun getLayout():Int
+    abstract fun getLayout(): Int
 
-    fun Context.toast(context : Context = applicationContext, message : String?, duration : Int = Toast.LENGTH_LONG){
+    fun Context.toast(
+        context: Context = applicationContext,
+        message: String?,
+        duration: Int = Toast.LENGTH_LONG
+    ) {
         Toast.makeText(context, message, duration).show()
     }
 }

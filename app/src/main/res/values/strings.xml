@@ -8,4 +8,6 @@
     <string name="signup">SIGNUP</string>
     <string name="not_an_accouunt_yet_register">Not an accouunt yet? Register</string>
     <string name="login">LOGIN</string>
+    <string name="send">SEND RECOVER EMAIL</string>
+    <string name="password_recover">Password Recover</string>
 </resources>

@@ -1,12 +1,13 @@
 package com.example.loginconmvpsociedadandroide.presentation.login.presenter
 
-import com.example.loginconmvpsociedadandroide.domain.interactor.loginInteractor.LoginInterator
+import com.example.loginconmvpsociedadandroide.domain.interactor.auth.loginInteractor.LoginInterator
 import com.example.loginconmvpsociedadandroide.presentation.login.LoginContract
 import com.example.loginconmvpsociedadandroide.presentation.login.exceptions.FirebaseLoginException
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class LoginPresenter(loginInteractor: LoginInterator) : LoginContract.LoginPresenter, CoroutineScope {
+class LoginPresenter(loginInteractor: LoginInterator) : LoginContract.LoginPresenter,
+    CoroutineScope {
     var view: LoginContract.LoginView? = null
     var loginInteractor: LoginInterator? = null
 
@@ -43,7 +44,7 @@ class LoginPresenter(loginInteractor: LoginInterator) : LoginContract.LoginPrese
                     view?.hideProgressDialog()
                     view?.navigateToMain()
                 }
-            }catch (e:FirebaseLoginException){
+            } catch (e: FirebaseLoginException) {
                 if (isViewAttached()) {
                     view?.showError(e.message)
                 }

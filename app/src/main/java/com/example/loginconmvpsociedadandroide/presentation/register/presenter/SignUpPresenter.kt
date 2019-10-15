@@ -1,21 +1,22 @@
 package com.example.loginconmvpsociedadandroide.presentation.register.presenter
 
 import androidx.core.util.PatternsCompat
-import com.example.loginconmvpsociedadandroide.domain.interactor.registerInteractor.SignUpInteractor
+import com.example.loginconmvpsociedadandroide.domain.interactor.auth.registerInteractor.SignUpInteractor
 import com.example.loginconmvpsociedadandroide.presentation.register.SignUpContract
 import com.example.loginconmvpsociedadandroide.presentation.register.exceptions.FirebaseRegisterException
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.RegisterPresenter, CoroutineScope {
-    private val job  = Job()
+class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.RegisterPresenter,
+    CoroutineScope {
+    private val job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
-    var view : SignUpContract.RegisterView? = null
-    var signUpInteractor:SignUpInteractor? = null
+    var view: SignUpContract.RegisterView? = null
+    var signUpInteractor: SignUpInteractor? = null
 
     init {
-        this.signUpInteractor=signUpInteractor
+        this.signUpInteractor = signUpInteractor
     }
 
     override fun attachView(view: SignUpContract.RegisterView) {
@@ -23,11 +24,11 @@ class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.Regis
     }
 
     override fun isViewAttached(): Boolean {
-        return view!=null
+        return view != null
     }
 
     override fun detachView() {
-        view=null
+        view = null
     }
 
     override fun dettachJob() {
@@ -38,7 +39,7 @@ class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.Regis
         return fullName.isEmpty()
     }
 
-    override fun checkValidEmail(email: String):Boolean {
+    override fun checkValidEmail(email: String): Boolean {
         return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
     }
 
@@ -47,24 +48,24 @@ class SignUpPresenter(signUpInteractor: SignUpInteractor) : SignUpContract.Regis
     }
 
     override fun checkPasswordsMatch(pw1: String, pw2: String): Boolean {
-        return pw1==pw2
+        return pw1 == pw2
     }
 
     override fun signUp(fullName: String, email: String, password: String) {
-        launch{
+        launch {
             view?.showProgress()
-           try{
-               signUpInteractor?.signUp(fullName,email,password)
-               if(isViewAttached()) {
-                   view?.navigateToMain()
-                   view?.hideProgress()
-               }
-           }catch (e:FirebaseRegisterException){
-               if(isViewAttached()) {
-                   view?.showError(e.message)
-                   view?.hideProgress()
-               }
-           }
+            try {
+                signUpInteractor?.signUp(fullName, email, password)
+                if (isViewAttached()) {
+                    view?.navigateToMain()
+                    view?.hideProgress()
+                }
+            } catch (e: FirebaseRegisterException) {
+                if (isViewAttached()) {
+                    view?.showError(e.message)
+                    view?.hideProgress()
+                }
+            }
         }
     }
 }

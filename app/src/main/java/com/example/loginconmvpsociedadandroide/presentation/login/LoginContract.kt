@@ -8,6 +8,7 @@ interface LoginContract {
         fun signIn()
         fun navigateToMain()
         fun navigateToRegister()
+        fun navigateToPasswordRecover()
     }
 
     interface LoginPresenter {

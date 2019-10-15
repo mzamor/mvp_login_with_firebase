@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
-import com.example.loginconmvpsociedadandroide.domain.interactor.registerInteractor.SignUpInteractorImpl
+import com.example.loginconmvpsociedadandroide.domain.interactor.auth.registerInteractor.SignUpInteractorImpl
 import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.SignUpContract
 import com.example.loginconmvpsociedadandroide.presentation.register.presenter.SignUpPresenter

@@ -1,7 +1,5 @@
-package com.example.loginconmvpsociedadandroide.domain.interactor.registerInteractor
+package com.example.loginconmvpsociedadandroide.domain.interactor.auth.registerInteractor
 
-import android.net.Uri
-import com.example.loginconmvpsociedadandroide.presentation.login.exceptions.FirebaseLoginException
 import com.example.loginconmvpsociedadandroide.presentation.register.exceptions.FirebaseRegisterException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
