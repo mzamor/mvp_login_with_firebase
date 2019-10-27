@@ -3,23 +3,25 @@ package com.example.loginconmvpsociedadandroide.presentation.login.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.example.loginconmvpsociedadandroide.LoginConMvpApp
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
-import com.example.loginconmvpsociedadandroide.domain.interactor.auth.loginInteractor.LoginInteractorImpl
 import com.example.loginconmvpsociedadandroide.presentation.login.LoginContract
 import com.example.loginconmvpsociedadandroide.presentation.login.presenter.LoginPresenter
 import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
-import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.PasswordRecoverContract
 import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.view.PasswordRecoverActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.view.SignUpActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class LoginActivity : BaseActivity(), LoginContract.LoginView {
+    @Inject
     lateinit var presenter: LoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = LoginPresenter(LoginInteractorImpl())
+     //   presenter = LoginPresenter(LoginInteractorImpl())
+        (application as LoginConMvpApp).getAppComponent()?.inject(this)
         presenter.attachView(this)
         btn_login.setOnClickListener {
             signIn()
