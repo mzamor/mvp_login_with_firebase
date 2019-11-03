@@ -1,23 +1,24 @@
 package com.example.loginconmvpsociedadandroide.presentation.passwordRecover.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.loginconmvpsociedadandroide.LoginWithMvpApp
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
-import com.example.loginconmvpsociedadandroide.domain.interactor.auth.passwordRecoverInteractor.PasswordRecoverInteractorImpl
 import com.example.loginconmvpsociedadandroide.presentation.login.view.LoginActivity
 import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.PasswordRecoverContract
 import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.presenter.PasswordRecoverPresenter
 import kotlinx.android.synthetic.main.activity_recover_password.*
+import javax.inject.Inject
 
 class PasswordRecoverActivity : BaseActivity(), PasswordRecoverContract.PasswordRecoverView {
-    lateinit var presenter: PasswordRecoverContract.PasswordRecoverPresenter
+    @Inject
+    lateinit var presenter: PasswordRecoverPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = PasswordRecoverPresenter(PasswordRecoverInteractorImpl())
+        (application as LoginWithMvpApp).getAppComponent()?.inject(this)
         presenter.attachView(this)
         btn_recover_password.setOnClickListener {
             recoverPassword()
@@ -29,6 +30,7 @@ class PasswordRecoverActivity : BaseActivity(), PasswordRecoverContract.Password
     }
 
     override fun showError(msgError: String?) {
+        hideProgress()
         toast(this, msgError)
     }
 

@@ -3,20 +3,23 @@ package com.example.loginconmvpsociedadandroide.presentation.register.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.example.loginconmvpsociedadandroide.LoginWithMvpApp
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
-import com.example.loginconmvpsociedadandroide.domain.interactor.auth.registerInteractor.SignUpInteractorImpl
 import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.SignUpContract
 import com.example.loginconmvpsociedadandroide.presentation.register.presenter.SignUpPresenter
 import kotlinx.android.synthetic.main.activity_register.*
+import javax.inject.Inject
 
 class SignUpActivity : BaseActivity(), SignUpContract.RegisterView {
+    @Inject
     lateinit var presenter:SignUpPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = SignUpPresenter(SignUpInteractorImpl())
+        (application as LoginWithMvpApp).getAppComponent()?.inject(this)
+
         presenter.attachView(this)
 
         bt_register.setOnClickListener {
@@ -75,6 +78,7 @@ class SignUpActivity : BaseActivity(), SignUpContract.RegisterView {
     }
 
     override fun showError(errorMsg: String?) {
+        hideProgress()
         toast(this,errorMsg)
     }
 

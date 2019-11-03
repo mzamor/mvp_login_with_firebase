@@ -19,8 +19,8 @@ class LoginPresenter(loginInteractor: LoginInterator) : LoginContract.LoginPrese
         this.loginInteractor = loginInteractor
     }
 
-    override fun attachView(view: LoginContract.LoginView) {
-        this.view = view
+    override fun attachView(loginView: LoginContract.LoginView) {
+        this.view = loginView
     }
 
     override fun dettachView() {

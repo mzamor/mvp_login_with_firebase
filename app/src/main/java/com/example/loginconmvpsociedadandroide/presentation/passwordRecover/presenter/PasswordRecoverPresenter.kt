@@ -39,7 +39,7 @@ class PasswordRecoverPresenter(passwordRecoverInteractor: PasswordRecoverInterac
                 view?.navigateToLogin()
             } catch (e: PasswordRecoverException) {
                 view?.hideProgress()
-                view?.showError(e?.message)
+                view?.showError(e.message)
             }
         }
     }

@@ -6,7 +6,7 @@ import com.example.loginconmvpsociedadandroide.presentation.di.PresentationCompo
 import com.example.loginconmvpsociedadandroide.presentation.di.PresentationModule
 
 
-class LoginConMvpApp : Application() {
+class LoginWithMvpApp : Application() {
     private var appComponent : PresentationComponent? = null
 
     override fun onCreate() {

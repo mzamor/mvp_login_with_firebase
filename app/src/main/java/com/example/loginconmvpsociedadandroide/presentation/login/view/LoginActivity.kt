@@ -3,7 +3,7 @@ package com.example.loginconmvpsociedadandroide.presentation.login.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.example.loginconmvpsociedadandroide.LoginConMvpApp
+import com.example.loginconmvpsociedadandroide.LoginWithMvpApp
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
 import com.example.loginconmvpsociedadandroide.presentation.login.LoginContract
@@ -20,8 +20,7 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //   presenter = LoginPresenter(LoginInteractorImpl())
-        (application as LoginConMvpApp).getAppComponent()?.inject(this)
+        (application as LoginWithMvpApp).getAppComponent()?.inject(this)
         presenter.attachView(this)
         btn_login.setOnClickListener {
             signIn()
@@ -40,12 +39,13 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun showError(msgError: String?) {
+        hideProgressDialog()
         toast(this, msgError)
     }
 
     override fun showProgressDialog() {
         progressBar_login.visibility = View.VISIBLE
-        btn_login.visibility = View.GONE
+        btn_login.visibility = View.INVISIBLE
     }
 
     override fun hideProgressDialog() {

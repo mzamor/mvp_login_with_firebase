@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".LoginConMvpApp">
+        android:name=".LoginWithMvpApp">
         <activity android:name=".presentation.passwordRecover.view.PasswordRecoverActivity"/>
         <activity android:name=".presentation.register.view.SignUpActivity" />
         <activity android:name=".presentation.main.view.MainActivity" />
