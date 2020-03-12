@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:gravity="center|top"
+    android:orientation="vertical"
     tools:context=".presentation.main.view.MainActivity">
 
     <TextView
@@ -11,7 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:layout_margin="@dimen/dimen_x20"
         android:text="@string/clean_firestore_login"
-        android:textSize="30sp" />
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/bt_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notifications" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
