@@ -11,4 +11,9 @@
     <string name="send">SEND RECOVER EMAIL</string>
     <string name="password_recover">Password Recover</string>
     <string name="notifications">Notifications</string>
+    <string name="action_settings">Settings</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="default_notification_channel_name" translatable="true">Weather</string>
+
 </resources>
