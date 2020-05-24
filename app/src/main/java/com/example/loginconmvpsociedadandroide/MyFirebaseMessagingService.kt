@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.example.loginconmvpsociedadandroide.presentation.login.view.LoginActivity
-import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

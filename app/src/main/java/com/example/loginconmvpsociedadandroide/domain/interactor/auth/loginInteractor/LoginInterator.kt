@@ -2,4 +2,5 @@ package com.example.loginconmvpsociedadandroide.domain.interactor.auth.loginInte
 
 interface LoginInterator {
     suspend fun loginWithEmailAndPassword(email:String, password:String)
+    suspend fun isLoggged()
 }

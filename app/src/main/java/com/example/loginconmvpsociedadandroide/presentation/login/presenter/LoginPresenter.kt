@@ -52,6 +52,21 @@ class LoginPresenter(loginInteractor: LoginInterator) : LoginContract.LoginPrese
         }
     }
 
+
+    override fun isLogged() {
+        launch {
+            try {
+                loginInteractor?.isLoggged()
+                if (isViewAttached()) {
+                    view?.navigateToMain()
+                }
+            } catch (e: FirebaseLoginException) {
+                view?.showError(e.message)
+            }
+        }
+    }
+
+
     override fun checkEmptyFields(email: String, password: String): Boolean {
         return email.isEmpty() || password.isEmpty()
     }

@@ -14,9 +14,9 @@ import android.widget.TextView
 import com.example.loginconmvpsociedadandroide.LoginWithMvpApp
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
+import com.example.loginconmvpsociedadandroide.presentation.home.view.HomeActivity
 import com.example.loginconmvpsociedadandroide.presentation.login.LoginContract
 import com.example.loginconmvpsociedadandroide.presentation.login.presenter.LoginPresenter
-import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
 import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.view.PasswordRecoverActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.view.SignUpActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,7 +26,7 @@ import javax.inject.Inject
 class LoginActivity : BaseActivity(), LoginContract.LoginView {
     @Inject
     lateinit var presenter: LoginPresenter
-    var myDialog : Dialog? = null
+    var myDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +34,9 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
         presenter.attachView(this)
         myDialog = Dialog(this)
         myDialog?.setContentView(R.layout.custom_pop)
-        var tvTitleDialog =  myDialog?.findViewById(R.id.tv_title_dialog) as TextView
-        var tvBodyDialog =  myDialog?.findViewById(R.id.tv_body_dialog) as TextView
-        var tvCloseDialog =  myDialog?.findViewById(R.id.tv_close_dialog) as TextView
+        val tvTitleDialog = myDialog?.findViewById(R.id.tv_title_dialog) as TextView
+        val tvBodyDialog = myDialog?.findViewById(R.id.tv_body_dialog) as TextView
+        val tvCloseDialog = myDialog?.findViewById(R.id.tv_close_dialog) as TextView
 
         tvTitleDialog.text = "Cod-19"
         tvBodyDialog.text = "Recomendaciones útiles para evitar el contagio"
@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
         }
 
         myDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-       myDialog?.window?.setGravity(Gravity.TOP)
+        myDialog?.window?.setGravity(Gravity.TOP)
         myDialog?.show()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -53,8 +53,10 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
             val channelName = getString(R.string.default_notification_channel_name)
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager?.createNotificationChannel(
-                NotificationChannel(channelId,
-                    channelName, NotificationManager.IMPORTANCE_LOW)
+                NotificationChannel(
+                    channelId,
+                    channelName, NotificationManager.IMPORTANCE_LOW
+                )
             )
         }
         val bundle: Bundle? = intent.extras
@@ -104,18 +106,23 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun navigateToMain() {
-        var intent = Intent(this, MainActivity::class.java)
+        var intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 
     override fun navigateToRegister() {
-        startActivity(Intent(this, SignUpActivity::class.java) )
+        startActivity(Intent(this, SignUpActivity::class.java))
     }
 
     override fun navigateToPasswordRecover() {
         startActivity(Intent(this, PasswordRecoverActivity::class.java))
         finish()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.isLogged()
     }
 
     override fun onDetachedFromWindow() {

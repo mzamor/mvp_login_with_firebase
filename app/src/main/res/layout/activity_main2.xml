@@ -6,7 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center|top"
     android:orientation="vertical"
-    tools:context=".presentation.main.view.MainActivity">
+    android:padding="@dimen/dimen_x20"
+    tools:context=".presentation.home.view.HomeActivity">
+
+    <Button
+        android:id="@+id/bt_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log OUT"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -14,15 +21,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_margin="@dimen/dimen_x20"
-        android:text="@string/clean_firestore_login"
+        android:text="@string/notifications"
         android:textSize="12sp" />
-
-    <Button
-        android:id="@+id/bt_notifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notifications" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notifications"

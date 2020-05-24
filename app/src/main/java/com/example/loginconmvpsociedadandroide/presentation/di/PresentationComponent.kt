@@ -1,5 +1,6 @@
 package com.example.loginconmvpsociedadandroide.presentation.di
 
+import com.example.loginconmvpsociedadandroide.presentation.home.view.HomeActivity
 import com.example.loginconmvpsociedadandroide.presentation.login.view.LoginActivity
 import com.example.loginconmvpsociedadandroide.presentation.passwordRecover.view.PasswordRecoverActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.view.SignUpActivity
@@ -12,4 +13,5 @@ interface PresentationComponent {
     fun inject(loginActivity: LoginActivity)
     fun inject(signUpActivity:SignUpActivity)
     fun inject(passwordActivity:PasswordRecoverActivity)
+    fun inject(homeActivity: HomeActivity)
 }

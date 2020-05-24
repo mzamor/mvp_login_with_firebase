@@ -6,7 +6,7 @@ import android.view.View
 import com.example.loginconmvpsociedadandroide.LoginWithMvpApp
 import com.example.loginconmvpsociedadandroide.R
 import com.example.loginconmvpsociedadandroide.base.BaseActivity
-import com.example.loginconmvpsociedadandroide.presentation.main.view.MainActivity
+import com.example.loginconmvpsociedadandroide.presentation.home.view.HomeActivity
 import com.example.loginconmvpsociedadandroide.presentation.register.SignUpContract
 import com.example.loginconmvpsociedadandroide.presentation.register.presenter.SignUpPresenter
 import kotlinx.android.synthetic.main.activity_register.*
@@ -32,7 +32,7 @@ class SignUpActivity : BaseActivity(), SignUpContract.RegisterView {
     }
 
     override fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }

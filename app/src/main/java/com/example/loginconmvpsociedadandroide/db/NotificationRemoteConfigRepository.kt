@@ -1,6 +1,4 @@
 package com.example.loginconmvpsociedadandroide.db
-
-import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 
 class NotificationRemoteConfigRepository(private val notificationDao: NotificationRemoteConfigDao) {

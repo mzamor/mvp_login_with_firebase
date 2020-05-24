@@ -7,13 +7,24 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 class LoginInteractorImpl : LoginInterator {
-    override suspend fun loginWithEmailAndPassword(email: String, password: String) : Unit = suspendCancellableCoroutine { continuation ->
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
-            if(it.isSuccessful) {
-                continuation.resume(Unit)
-            }else{
-                continuation.resumeWithException(FirebaseLoginException(it.exception?.message))
+    val firebaseAuth = FirebaseAuth.getInstance()
+
+    override suspend fun loginWithEmailAndPassword(email: String, password: String): Unit =
+        suspendCancellableCoroutine { continuation ->
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    continuation.resume(Unit)
+                } else {
+                    continuation.resumeWithException(FirebaseLoginException(it.exception?.message))
+                }
             }
+        }
+
+    override suspend fun isLoggged(): Unit = suspendCancellableCoroutine { continuation ->
+        if (firebaseAuth.currentUser != null) {
+            continuation.resume(Unit)
+        } else {
+            continuation.resumeWithException(FirebaseLoginException("no esta loggeado"))
         }
     }
 }

@@ -12,7 +12,7 @@
         android:name=".LoginWithMvpApp">
         <activity android:name=".presentation.passwordRecover.view.PasswordRecoverActivity"/>
         <activity android:name=".presentation.register.view.SignUpActivity" />
-        <activity android:name=".presentation.main.view.MainActivity" />
+        <activity android:name=".presentation.home.view.HomeActivity" />
         <activity android:name=".presentation.login.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

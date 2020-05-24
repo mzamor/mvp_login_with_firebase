@@ -33,6 +33,11 @@ class NotificationRemoteConfigViewModel( application: Application) : AndroidView
         notificationRepository.insert(notification)
     }
 
+    fun insertAll(notifications : List<NotificationRemoteConfig>) = scope.launch(Dispatchers.IO) {
+        for(noti in notifications)
+            notificationRepository.insert(noti)
+    }
+
     fun deleteAllNotes() = scope.launch(Dispatchers.IO) {
         notificationRepository.deleteAll()
     }

@@ -17,7 +17,7 @@ interface LoginContract {
         fun dettachJob()
         fun isViewAttached(): Boolean
         fun loginUserWithEmailAndPassword(email: String, password: String)
+        fun isLogged()
         fun checkEmptyFields(email: String, password: String): Boolean
-
     }
 }
